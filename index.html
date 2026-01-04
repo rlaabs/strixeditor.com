@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strix SQLite - macOS Native SQLite Browser</title>
+    <meta name="description" content="Fast, beautiful, and powerful SQLite browser for macOS. Built with Swift and SwiftUI.">
+    <meta property="og:title" content="Strix SQLite - macOS Native SQLite Browser for macOS">
+    <meta property="og:description" content="Fast, beautiful, and powerful SQLite browser for macOS. Built with Swift and SwiftUI.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --electric-blue: #0066FF;
+            --hot-pink: #FF006E;
+            --vibrant-orange: #FF6B35;
+            --yellow: #FFD60A;
+            --white: #ffffff;
+            --gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Geometric background shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .circle {
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--electric-blue), transparent);
+        }
+
+        .square {
+            background: linear-gradient(135deg, var(--hot-pink), transparent);
+            transform: rotate(45deg);
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 260px solid var(--vibrant-orange);
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 100px) rotate(90deg); }
+            50% { transform: translate(0, 200px) rotate(180deg); }
+            75% { transform: translate(-100px, 100px) rotate(270deg); }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            padding: 20px 40px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--hot-pink));
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1;
+            margin-bottom: 30px;
+            letter-spacing: -3px;
+        }
+
+        .hero-text h1 .gradient-text {
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink), var(--vibrant-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Slide Animation */
+        .slide-container {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            height: 1.1em;
+            vertical-align: bottom;
+        }
+
+        .slide-track {
+            display: flex;
+            flex-direction: column;
+            animation: slideWords 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        }
+
+        .slide-word {
+            height: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        @keyframes slideWords {
+            0%, 40% {
+                transform: translateY(0);
+            }
+            50%, 90% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink));
+            color: var(--white);
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 2px solid var(--electric-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--electric-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual - Compact Vertical Layout */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .floating-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .floating-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.4);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .card-text {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(40px, 6vw, 72px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-box:hover::before {
+            opacity: 1;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3);
+        }
+
+        .feature-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 120px;
+            opacity: 0.05;
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-box:nth-child(1) { border-left: 4px solid var(--electric-blue); }
+        .feature-box:nth-child(1) .feature-icon { filter: drop-shadow(0 0 20px var(--electric-blue)); }
+
+        .feature-box:nth-child(2) { border-left: 4px solid var(--hot-pink); }
+        .feature-box:nth-child(2) .feature-icon { filter: drop-shadow(0 0 20px var(--hot-pink)); }
+
+        .feature-box:nth-child(3) { border-left: 4px solid var(--vibrant-orange); }
+        .feature-box:nth-child(3) .feature-icon { filter: drop-shadow(0 0 20px var(--vibrant-orange)); }
+
+        .feature-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .feature-description {
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Screenshot Showcase */
+        .showcase {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .screenshot-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--electric-blue);
+            box-shadow:
+                0 32px 64px -16px rgba(0, 0, 0, 0.7),
+                0 0 80px rgba(0, 102, 255, 0.15);
+        }
+
+        .screenshot-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .window-chrome {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: linear-gradient(180deg, #3a3a3f 0%, #2d2d32 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 8px;
+        }
+
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .traffic-light.red { background: #ff5f56; }
+        .traffic-light.yellow { background: #ffbd2e; }
+        .traffic-light.green { background: #27ca40; }
+
+        .screenshot-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.4s;
+        }
+
+        .screenshot-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .screenshot-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            z-index: 2;
+        }
+
+        .screenshot-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--electric-blue);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .screenshot-card:nth-child(2) .screenshot-badge {
+            background: var(--hot-pink);
+        }
+
+        .screenshot-card:nth-child(3) .screenshot-badge {
+            background: var(--vibrant-orange);
+        }
+
+        .screenshot-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 22px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .screenshot-description {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 32px 128px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-content img {
+            display: block;
+            max-width: 100%;
+            max-height: 85vh;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 28px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: var(--gray);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--electric-blue);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .header-content {
+                padding: 15px 30px;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Geometric Shapes -->
+    <div class="bg-shapes">
+        <div class="shape circle" style="width: 400px; height: 400px; top: 10%; left: 5%;"></div>
+        <div class="shape square" style="width: 300px; height: 300px; top: 50%; right: 10%;"></div>
+        <div class="shape triangle" style="bottom: 10%; left: 20%;"></div>
+        <div class="shape circle" style="width: 250px; height: 250px; top: 70%; right: 15%;"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="strix_logo_48.png" alt="Strix Logo" class="logo-img">
+                    <span>STRIX</span>
+                </div>
+                <nav>
+                    <a href="#features">Features</a>
+                    <a href="#showcase">Screenshots</a>
+                    <a href="#download">Download</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        macOS Native<br/>
+                        <span class="gradient-text">SQLite <span class="slide-container"><span class="slide-track"><span class="slide-word">Browser</span><span class="slide-word">Editor</span></span></span></span><br/>
+                        
+                    </h1>
+                    <p class="hero-subtitle">
+                        Fast, beautiful, and powerful. Built with Swift and SwiftUI for macOS 14+.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#download" class="btn btn-primary">Download for macOS</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <span class="card-icon">⚡</span>
+                        <div class="card-content">
+                            <div class="card-title">Native Speed</div>
+                            <div class="card-text">Swift + SwiftUI</div>
+                        </div>
+                    </div>
+                    <div class="floating-card">
+                        <span class="card-icon">🛡️</span>
+                        <div class="card-content">
+                            <div class="card-title">Safe by Default</div>
+                            <div class="card-text">Read-only until you're ready</div>
+                        </div>
+                    </div>
+                    <div class="floating-card">
+                        <span class="card-icon">🔍</span>
+                        <div class="card-content">
+                            <div class="card-title">FTS Search</div>
+                            <div class="card-text">Instant Results</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <h2 class="section-title">FEATURES</h2>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-number">01</div>
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Native Performance</h3>
+                    <p class="feature-description">
+                        Built with Swift and SwiftUI, not Electron. Lightning-fast startup and smooth scrolling.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-number">02</div>
+                    <span class="feature-icon">🛡️</span>
+                    <h3 class="feature-title">View & Edit Modes</h3>
+                    <p class="feature-description">
+                        Databases open read-only—you can't accidentally modify anything. Toggle to edit mode when needed, and every change is highlighted until you save or discard.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-number">03</div>
+                    <span class="feature-icon">🔍</span>
+                    <h3 class="feature-title">Advanced Search</h3>
+                    <p class="feature-description">
+                        Full-text search with FTS support. Find anything instantly, even in large databases.
+                    </p>
+                </div>
+            </div>
+
+            </section>
+
+        <!-- Screenshot Showcase -->
+        <section class="showcase" id="showcase">
+            <h2 class="section-title">SEE IT IN ACTION</h2>
+
+            <div class="showcase-grid">
+                <!-- Change Tracking -->
+                <div class="screenshot-card" onclick="openLightbox('screenshots/12-change-tracking-full.webp')">
+                    <div class="window-chrome">
+                        <div class="traffic-lights">
+                            <div class="traffic-light red"></div>
+                            <div class="traffic-light yellow"></div>
+                            <div class="traffic-light green"></div>
+                        </div>
+                    </div>
+                    <img src="screenshots/12-change-tracking-full.webp" alt="Change Tracking">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Edit Mode</span>
+                        <h3 class="screenshot-title">Change Tracking</h3>
+                        <p class="screenshot-description">See every modification highlighted in real-time. Review all pending changes before committing to your database.</p>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="screenshot-card" onclick="openLightbox('screenshots/06-search-highlight-full.webp')">
+                    <div class="window-chrome">
+                        <div class="traffic-lights">
+                            <div class="traffic-light red"></div>
+                            <div class="traffic-light yellow"></div>
+                            <div class="traffic-light green"></div>
+                        </div>
+                    </div>
+                    <img src="screenshots/06-search-highlight-full.webp" alt="Search with Highlighting">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Search</span>
+                        <h3 class="screenshot-title">Instant Search</h3>
+                        <p class="screenshot-description">Find anything instantly with real-time filtering and match highlighting.</p>
+                    </div>
+                </div>
+
+                <!-- Schema Inspector -->
+                <div class="screenshot-card" onclick="openLightbox('screenshots/13-schema-tab-full.webp')">
+                    <div class="window-chrome">
+                        <div class="traffic-lights">
+                            <div class="traffic-light red"></div>
+                            <div class="traffic-light yellow"></div>
+                            <div class="traffic-light green"></div>
+                        </div>
+                    </div>
+                    <img src="screenshots/13-schema-tab-full.webp" alt="Schema Inspector">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Schema</span>
+                        <h3 class="screenshot-title">Schema Inspector</h3>
+                        <p class="screenshot-description">View column types, constraints, and CREATE statements at a glance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <img src="" alt="Screenshot" id="lightbox-img">
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-text">
+                    © 2026 Strix SQLite. Built with ❤️ for developers.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Documentation</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+</html>
