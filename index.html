@@ -193,36 +193,49 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Slide Animation */
+        /* Slide Animation - Universal Cross-Browser */
         .slide-container {
             display: inline-block;
-            position: relative;
             overflow: hidden;
             height: 1.1em;
             vertical-align: bottom;
+            line-height: 1.1em;
         }
 
         .slide-track {
-            display: flex;
-            flex-direction: column;
+            display: block;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
             animation: slideWords 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
         }
 
         .slide-word {
+            display: block;
             height: 1.1em;
-            display: flex;
-            align-items: center;
+            line-height: 1.1em;
+            white-space: nowrap;
+            /* Re-apply gradient since parent's background-clip doesn't extend into inline-block */
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink), var(--vibrant-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
         }
 
         @keyframes slideWords {
             0%, 40% {
-                transform: translateY(0);
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
             }
             50%, 90% {
-                transform: translateY(-50%);
+                -webkit-transform: translate3d(0, -1.1em, 0);
+                transform: translate3d(0, -1.1em, 0);
             }
             100% {
-                transform: translateY(0);
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
