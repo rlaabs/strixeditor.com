@@ -614,6 +614,49 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        /* Support Section */
+        .support {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .support-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .support-card:hover {
+            border-color: var(--electric-blue);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3);
+        }
+
+        .support-icon {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .support-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .support-description {
+            color: var(--gray);
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
         /* Footer */
         footer {
             padding: 60px 0;
@@ -717,6 +760,7 @@
                     <a href="#features">Features</a>
                     <a href="#showcase">Screenshots</a>
                     <a href="#download">Download</a>
+                    <a href="#support">Support</a>
                 </nav>
             </div>
         </header>
@@ -881,6 +925,19 @@
                 <img src="" alt="Screenshot" id="lightbox-img">
             </div>
         </div>
+
+        <!-- Support Section -->
+        <section class="support" id="support">
+            <h2 class="section-title">SUPPORT</h2>
+            <div class="support-card">
+                <span class="support-icon">💬</span>
+                <h3 class="support-title">Need Help?</h3>
+                <p class="support-description">
+                    Have a question, found a bug, or want to request a feature? We'd love to hear from you.
+                </p>
+                <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#111;&#98;&#101;&#114;&#116;&#64;&#115;&#116;&#114;&#105;&#120;&#101;&#100;&#105;&#116;&#111;&#114;&#46;&#99;&#111;&#109;" class="btn btn-primary">Contact Support</a>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer>
