@@ -215,13 +215,11 @@
             height: 1.1em;
             line-height: 1.1em;
             white-space: nowrap;
-            /* Re-apply gradient since parent's background-clip doesn't extend into inline-block */
+            /* Static gradient - no animation to avoid expensive repaints */
             background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink), var(--vibrant-orange));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradientShift 5s ease infinite;
         }
 
         @keyframes slideWords {
@@ -807,7 +805,7 @@
 
             <div class="showcase-grid">
                 <!-- Change Tracking -->
-                <div class="screenshot-card" onclick="openLightbox('screenshots/12-change-tracking-full.webp')">
+                <div class="screenshot-card" onclick="openLightbox('12-change-tracking.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
                             <div class="traffic-light red"></div>
@@ -815,7 +813,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="screenshots/12-change-tracking-full.webp" alt="Change Tracking">
+                    <img src="12-change-tracking.webp" alt="Change Tracking">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Edit Mode</span>
                         <h3 class="screenshot-title">Change Tracking</h3>
@@ -824,7 +822,7 @@
                 </div>
 
                 <!-- Search -->
-                <div class="screenshot-card" onclick="openLightbox('screenshots/06-search-highlight-full.webp')">
+                <div class="screenshot-card" onclick="openLightbox('05-search-bar.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
                             <div class="traffic-light red"></div>
@@ -832,7 +830,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="screenshots/06-search-highlight-full.webp" alt="Search with Highlighting">
+                    <img src="05-search-bar.webp" alt="Search with Highlighting">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Search</span>
                         <h3 class="screenshot-title">Instant Search</h3>
@@ -841,7 +839,7 @@
                 </div>
 
                 <!-- Schema Inspector -->
-                <div class="screenshot-card" onclick="openLightbox('screenshots/13-schema-tab-full.webp')">
+                <div class="screenshot-card" onclick="openLightbox('21-schema-full.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
                             <div class="traffic-light red"></div>
@@ -849,7 +847,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="screenshots/13-schema-tab-full.webp" alt="Schema Inspector">
+                    <img src="21-schema-full.webp" alt="Schema Inspector">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Schema</span>
                         <h3 class="screenshot-title">Schema Inspector</h3>
@@ -858,7 +856,7 @@
                 </div>
 
                 <!-- Query Tab -->
-                <div class="screenshot-card" onclick="openLightbox('screenshots/14-query-tab-full.webp')">
+                <div class="screenshot-card" onclick="openLightbox('14-query-tab.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
                             <div class="traffic-light red"></div>
@@ -866,7 +864,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="screenshots/14-query-tab-full.webp" alt="Query Tab">
+                    <img src="14-query-tab.webp" alt="Query Tab">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Query</span>
                         <h3 class="screenshot-title">SQL Query Editor</h3>
