@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Strix SQLite</title>
-    <meta name="description" content="Terms of Service for Strix SQLite, a macOS native SQLite browser and editor.">
-    <link rel="canonical" href="https://strixeditor.com/terms.html">
+    <title>Changelog - Strix SQLite</title>
+    <meta name="description" content="Changelog for Strix SQLite. See what's new in each release.">
+    <link rel="canonical" href="https://strixeditor.com/changelog.html">
     <link rel="icon" type="image/png" href="/strix_logo_48.png">
     <link rel="apple-touch-icon" href="/strix_logo_48.png">
-    <meta property="og:title" content="Terms of Service - Strix SQLite">
-    <meta property="og:description" content="Terms of Service for Strix SQLite, a macOS native SQLite browser and editor.">
+    <meta property="og:title" content="Changelog - Strix SQLite">
+    <meta property="og:description" content="Changelog for Strix SQLite. See what's new in each release.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://strixeditor.com/terms.html">
+    <meta property="og:url" content="https://strixeditor.com/changelog.html">
     <meta property="og:image" content="https://strixeditor.com/strix_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,14 +155,14 @@
             width: 100%;
         }
 
-        /* Legal Content */
-        .legal-content {
+        /* Changelog Content */
+        .changelog-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 80px 20px 120px;
         }
 
-        .legal-content h1 {
+        .changelog-content h1 {
             font-family: 'Archivo Black', sans-serif;
             font-size: clamp(36px, 5vw, 56px);
             letter-spacing: -2px;
@@ -173,48 +173,130 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .legal-date {
+        .changelog-intro {
             color: var(--gray);
             font-size: 16px;
             margin-bottom: 60px;
         }
 
-        .legal-content h2 {
+        /* Version Block */
+        .version-block {
+            margin-bottom: 64px;
+        }
+
+        .version-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .version-number {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             letter-spacing: -0.5px;
-            margin-top: 48px;
-            margin-bottom: 16px;
             color: var(--white);
+            margin: 0;
         }
 
-        .legal-content p {
+        .version-date {
             color: var(--gray);
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
         }
 
-        .legal-content ul {
-            color: var(--gray);
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            padding-left: 24px;
+        /* Category */
+        .changelog-category {
+            margin-bottom: 24px;
         }
 
-        .legal-content li {
-            margin-bottom: 8px;
+        .category-label {
+            display: inline-block;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 6px;
+            margin-bottom: 12px;
         }
 
-        .legal-content a {
+        .category-added .category-label {
+            background: rgba(0, 102, 255, 0.15);
             color: var(--electric-blue);
-            text-decoration: none;
-            transition: color 0.3s;
+            border: 1px solid rgba(0, 102, 255, 0.3);
         }
 
-        .legal-content a:hover {
+        .category-fixed .category-label {
+            background: rgba(255, 0, 110, 0.15);
             color: var(--hot-pink);
+            border: 1px solid rgba(255, 0, 110, 0.3);
+        }
+
+        .category-performance .category-label {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--vibrant-orange);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .category-security .category-label {
+            background: rgba(255, 214, 10, 0.15);
+            color: var(--yellow);
+            border: 1px solid rgba(255, 214, 10, 0.3);
+        }
+
+        .changelog-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .changelog-category li {
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .changelog-category li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .category-added li::before {
+            background: var(--electric-blue);
+        }
+
+        .category-fixed li::before {
+            background: var(--hot-pink);
+        }
+
+        .category-performance li::before {
+            background: var(--vibrant-orange);
+        }
+
+        .category-security li::before {
+            background: var(--yellow);
+        }
+
+        /* Divider between versions */
+        .version-divider {
+            border: none;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin-bottom: 64px;
         }
 
         /* Footer */
@@ -292,71 +374,85 @@
             </div>
         </header>
 
-        <!-- Terms of Service -->
-        <div class="legal-content">
-            <h1>Terms of Service</h1>
-            <p class="legal-date">Effective date: February 5, 2026</p>
+        <!-- Changelog -->
+        <div class="changelog-content">
+            <h1>Changelog</h1>
+            <p class="changelog-intro">All notable changes to Strix SQLite are documented here.</p>
 
-            <h2>1. Agreement to Terms</h2>
-            <p>By purchasing, downloading, installing, or using Strix SQLite ("the Software"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Software.</p>
-            <p>The Software is developed and provided by Robert Laabs ("Developer", "we", "us", or "our").</p>
+            <!-- Version 1.1.0 -->
+            <div class="version-block">
+                <div class="version-header">
+                    <h2 class="version-number">1.1.0</h2>
+                    <span class="version-date">February 5, 2026</span>
+                </div>
 
-            <h2>2. Purchases and Payments</h2>
-            <p>The Software may be purchased through the following channels:</p>
-            <ul>
-                <li><strong>Paddle:</strong> Our order process is conducted by our online reseller <a href="https://www.paddle.com" target="_blank" rel="noopener">Paddle.com</a>. Paddle is the Merchant of Record for all orders placed through our website. Paddle provides customer service and handles returns related to those payments. By purchasing through Paddle, you agree to Paddle's <a href="https://www.paddle.com/legal/terms" target="_blank" rel="noopener">Terms of Use</a> and <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</li>
-                <li><strong>Apple App Store:</strong> Purchases made through the Mac App Store are governed by Apple's <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Terms and Conditions</a>. Apple handles all payment processing and billing for App Store purchases.</li>
-            </ul>
-            <p>All transactions are governed by the respective merchant's terms and conditions.</p>
+                <div class="changelog-category category-added">
+                    <span class="category-label">Added</span>
+                    <ul>
+                        <li>Split detail panel for viewing and editing full cell content</li>
+                        <li>Detail panel editing support in edit mode</li>
+                        <li>Detail panel keyboard navigation</li>
+                    </ul>
+                </div>
 
-            <h2>3. License Grant</h2>
-            <p>The Software is licensed, not sold, to you. Upon purchase, we grant you a limited, non-exclusive, non-transferable, revocable license to use the Software on devices you own or control, subject to these Terms.</p>
-            <p>This license does not include the right to:</p>
-            <ul>
-                <li>Modify, reverse-engineer, decompile, or disassemble the Software</li>
-                <li>Redistribute, sublicense, rent, lease, or lend the Software to third parties</li>
-                <li>Remove or alter any proprietary notices, labels, or marks on the Software</li>
-                <li>Use the Software for any unlawful purpose</li>
-            </ul>
+                <div class="changelog-category category-fixed">
+                    <span class="category-label">Fixed</span>
+                    <ul>
+                        <li>Exit edit mode crashes during table rebuild</li>
+                        <li>Pagination issues with FTS search highlighting</li>
+                    </ul>
+                </div>
 
-            <h2>4. Refund Policy</h2>
-            <p>We want you to be satisfied with your purchase. If you are not happy with the Software, you may request a refund within 30 days of your purchase date.</p>
-            <ul>
-                <li><strong>Paddle purchases:</strong> Contact us at <a href="mailto:robert@strixeditor.com">robert@strixeditor.com</a> or Paddle's support to request a refund.</li>
-                <li><strong>App Store purchases:</strong> Refunds for App Store purchases must be requested directly through Apple, as we are unable to process refunds for those transactions.</li>
-            </ul>
-            <p>Upon receiving a refund, your license to use the Software is revoked and you must cease using and delete any copies of the Software.</p>
+                <div class="changelog-category category-performance">
+                    <span class="category-label">Performance</span>
+                    <ul>
+                        <li>Optimized NSTableView scroll performance for large datasets</li>
+                        <li>Improved UI performance for tab and table switching</li>
+                    </ul>
+                </div>
+            </div>
 
-            <h2>5. Updates and Support</h2>
-            <p>We may release updates, patches, or new versions of the Software at our discretion. We are not obligated to provide updates or ongoing support, though we strive to improve the Software over time.</p>
+            <hr class="version-divider">
 
-            <h2>6. Intellectual Property</h2>
-            <p>The Software, including its code, design, graphics, and documentation, is the intellectual property of Robert Laabs and is protected by applicable copyright and intellectual property laws. These Terms do not grant you any ownership rights in the Software.</p>
-            <p>SQLite is a trademark of Hipp, Wyrick &amp; Company, Inc. Strix SQLite is not affiliated with or endorsed by SQLite.</p>
+            <!-- Version 1.0.0 -->
+            <div class="version-block">
+                <div class="version-header">
+                    <h2 class="version-number">1.0.0</h2>
+                    <span class="version-date">January 14, 2026</span>
+                </div>
 
-            <h2>7. Privacy and Data</h2>
-            <p>Strix SQLite does not collect, store, or transmit any user data. All databases and files remain on your device. For details, see our <a href="/#privacy">Privacy Policy</a>.</p>
-            <p>Note that Paddle, as our payment processor, will collect personal information necessary to process your transaction. Please review <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">Paddle's Privacy Policy</a> for details on how your payment data is handled.</p>
+                <div class="changelog-category category-added">
+                    <span class="category-label">Added</span>
+                    <ul>
+                        <li>Global search across all database tables with multi-tab results</li>
+                        <li>SQL syntax highlighting with colors for keywords, functions, strings, numbers, and comments</li>
+                        <li>Pending changes review tab before committing edits</li>
+                        <li>Full-text search (FTS5) support with temporary index building for large tables</li>
+                        <li>Database statistics view: table counts, row counts, file size</li>
+                        <li>Database views and triggers browser</li>
+                        <li>Resizable columns with smart auto-sizing on double-click</li>
+                        <li>INSERT/UPDATE/DELETE query support when edit mode is enabled</li>
+                        <li>Text zoom with Cmd+/Cmd- (50%-200%)</li>
+                        <li>Search result highlighting with toggle</li>
+                        <li>Edit mode with visual change tracking</li>
+                        <li>Inline cell editing with undo/redo support</li>
+                        <li>Row insert, delete, and duplicate operations</li>
+                        <li>Column sorting (preserves pending edits)</li>
+                        <li>Pagination for large tables</li>
+                        <li>Schema inspector showing columns, indexes, triggers, and CREATE statements</li>
+                    </ul>
+                </div>
 
-            <h2>8. Disclaimer of Warranties</h2>
-            <p>The Software is provided "as is" and "as available" without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
-            <p>We do not warrant that the Software will be error-free, uninterrupted, or free of harmful components. You use the Software at your own risk.</p>
-
-            <h2>9. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by applicable law, in no event shall the Developer be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or business interruption, arising out of or in connection with your use or inability to use the Software.</p>
-            <p>Our total liability to you for all claims arising from or related to these Terms or the Software shall not exceed the amount you paid for the Software.</p>
-
-            <h2>10. Termination</h2>
-            <p>We may terminate or suspend your license to use the Software at any time if you violate these Terms. Upon termination, you must cease all use of the Software and destroy any copies in your possession.</p>
-
-            <h2>11. Changes to These Terms</h2>
-            <p>We reserve the right to modify these Terms at any time. Updated Terms will be posted on this page with a revised effective date. Your continued use of the Software after any changes constitutes your acceptance of the new Terms.</p>
-
-            <h2>12. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of the State of New York, without regard to its conflict of law provisions.</p>
-
-            <h2>13. Contact</h2>
-            <p>If you have any questions about these Terms, please contact us at <a href="mailto:robert@strixeditor.com">robert@strixeditor.com</a>.</p>
+                <div class="changelog-category category-security">
+                    <span class="category-label">Security</span>
+                    <ul>
+                        <li>Fully sandboxed macOS app</li>
+                        <li>Read-only mode by default (edit mode must be explicitly enabled)</li>
+                        <li>Confirmation dialogs for destructive operations</li>
+                        <li>No cloud uploads - all data stays local</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Footer -->
