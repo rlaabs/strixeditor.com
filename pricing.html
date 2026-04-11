@@ -314,6 +314,52 @@
             color: var(--hot-pink);
         }
 
+        .purchase-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         /* Footer */
         footer {
             padding: 60px 0;
@@ -417,13 +463,24 @@
                     <li>No accounts, no tracking, no telemetry</li>
                 </ul>
 
-                <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" class="btn btn-primary">Download for macOS</a>
+                <div class="purchase-options">
+                    <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" class="btn btn-primary">
+                        <span class="btn-label">Mac App Store</span>
+                        Download for macOS
+                    </a>
+                    <div class="divider">or</div>
+                    <button onclick="buyDirect()" class="btn btn-secondary">
+                        <span class="btn-label">Direct purchase — no App Store required</span>
+                        Buy Direct — $9.99
+                    </button>
+                </div>
             </div>
 
             <p class="pricing-note">
-                Available on the <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener">Mac App Store</a>.
+                App Store purchases use Apple's payment system.<br>
+                Direct purchases are processed by Paddle and include a license key for up to 2 Macs.<br>
                 Requires macOS 14 or later.
-                30-day refund policy — see our <a href="/terms.html">Terms of Service</a> for details.
+                Questions? <a href="mailto:support@strixeditor.com">support@strixeditor.com</a>
             </p>
         </div>
 
@@ -445,5 +502,15 @@
             </div>
         </footer>
     </div>
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script>
+        Paddle.Initialize({ token: 'live_cd01627abeb844422ba33dda2c4' });
+
+        function buyDirect() {
+            Paddle.Checkout.open({
+                items: [{ priceId: 'pri_01knz29fxp2fjd6bwzekzjvqsp', quantity: 1 }]
+            });
+        }
+    </script>
 </body>
 </html>
