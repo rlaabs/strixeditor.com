@@ -46,41 +46,6 @@
             line-height: 1.6;
         }
 
-        /* Geometric background shapes */
-        .bg-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            opacity: 0.6;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .circle {
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--electric-blue), transparent);
-        }
-
-        .square {
-            background: linear-gradient(135deg, var(--hot-pink), transparent);
-            transform: rotate(45deg);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, 100px) rotate(90deg); }
-            50% { transform: translate(0, 200px) rotate(180deg); }
-            75% { transform: translate(-100px, 100px) rotate(270deg); }
-        }
-
         /* Container */
         .container {
             position: relative;
@@ -268,12 +233,6 @@
     </style>
 </head>
 <body>
-    <!-- Background Geometric Shapes -->
-    <div class="bg-shapes">
-        <div class="shape circle" style="width: 400px; height: 400px; top: 10%; left: 5%;"></div>
-        <div class="shape square" style="width: 300px; height: 300px; top: 50%; right: 10%;"></div>
-    </div>
-
     <div class="container">
         <!-- Header -->
         <header>
