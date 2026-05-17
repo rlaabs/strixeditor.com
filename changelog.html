@@ -215,6 +215,18 @@
             border: 1px solid rgba(255, 214, 10, 0.3);
         }
 
+        .category-changed .category-label {
+            background: rgba(160, 160, 160, 0.12);
+            color: #d0d0d0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .category-removed .category-label {
+            background: rgba(160, 160, 160, 0.08);
+            color: var(--gray);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .changelog-category ul {
             list-style: none;
             padding-left: 0;
@@ -254,6 +266,105 @@
 
         .category-security li::before {
             background: var(--yellow);
+        }
+
+        .category-changed li::before {
+            background: #d0d0d0;
+        }
+
+        .category-removed li::before {
+            background: var(--gray);
+        }
+
+        /* Platform sections */
+        .platform-section {
+            margin-bottom: 80px;
+            padding-left: 24px;
+            border-left: 3px solid transparent;
+        }
+
+        .platform-section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .platform-mac {
+            border-left-color: rgba(0, 102, 255, 0.4);
+        }
+
+        .platform-ipad {
+            border-left-color: rgba(255, 0, 110, 0.4);
+        }
+
+        .platform-section-header {
+            margin: 0 0 48px -24px;
+            padding: 28px 32px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-mac .platform-section-header {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.18), rgba(0, 102, 255, 0.04));
+            border: 1px solid rgba(0, 102, 255, 0.3);
+        }
+
+        .platform-ipad .platform-section-header {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.18), rgba(255, 0, 110, 0.04));
+            border: 1px solid rgba(255, 0, 110, 0.3);
+        }
+
+        .platform-section-eyebrow {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .platform-section-header h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(32px, 4.5vw, 44px);
+            letter-spacing: -1.5px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .platform-mac .platform-section-header h2 {
+            color: var(--electric-blue);
+        }
+
+        .platform-ipad .platform-section-header h2 {
+            color: var(--hot-pink);
+        }
+
+        .platform-section-header p {
+            color: var(--gray);
+            font-size: 15px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        /* Per-version platform tag */
+        .platform-tag {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        .platform-tag-mac {
+            background: rgba(0, 102, 255, 0.15);
+            color: var(--electric-blue);
+            border: 1px solid rgba(0, 102, 255, 0.4);
+        }
+
+        .platform-tag-ipad {
+            background: rgba(255, 0, 110, 0.15);
+            color: var(--hot-pink);
+            border: 1px solid rgba(255, 0, 110, 0.4);
         }
 
         /* Divider between versions */
@@ -337,12 +448,75 @@
         <!-- Changelog -->
         <div class="changelog-content">
             <h1>Changelog</h1>
-            <p class="changelog-intro">All notable changes to Strix SQLite are documented here.</p>
+            <p class="changelog-intro">All notable changes to Strix SQLite are documented here. The Mac and iPad apps ship as separate App Store listings with independent version histories.</p>
+
+            <section class="platform-section platform-mac">
+                <header class="platform-section-header">
+                    <div class="platform-section-eyebrow">Platform</div>
+                    <h2>Mac</h2>
+                    <p>Native macOS app &middot; App Store distributed</p>
+                </header>
+
+            <!-- Version 1.2.0 -->
+            <div class="version-block">
+                <div class="version-header">
+                    <span class="platform-tag platform-tag-mac">Mac</span>
+                    <h3 class="version-number">1.2.0</h3>
+                    <span class="version-date">May 17, 2026</span>
+                </div>
+
+                <div class="changelog-category category-added">
+                    <span class="category-label">Added</span>
+                    <ul>
+                        <li>Import CSV, TSV, and JSON files as new SQLite databases</li>
+                        <li>Import Excel workbooks as multi-table SQLite databases</li>
+                        <li>Encoding picker for tabular imports with Windows-1252 fallback</li>
+                        <li>Tabular file import surfaced on the welcome screen</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-category category-changed">
+                    <span class="category-label">Changed</span>
+                    <ul>
+                        <li>Branded welcome screen and app menu as Strix</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-category category-fixed">
+                    <span class="category-label">Fixed</span>
+                    <ul>
+                        <li>Detect non-SQLite-3 files at open and recover via WAL fallback copy</li>
+                        <li>Force single-line rendering in data cells</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="version-divider">
+
+            <!-- Version 1.1.1 -->
+            <div class="version-block">
+                <div class="version-header">
+                    <span class="platform-tag platform-tag-mac">Mac</span>
+                    <h3 class="version-number">1.1.1</h3>
+                    <span class="version-date">March 23, 2026</span>
+                </div>
+
+                <div class="changelog-category category-fixed">
+                    <span class="category-label">Fixed</span>
+                    <ul>
+                        <li>Handle WAL-mode and protected databases gracefully</li>
+                        <li>Fix inability to open databases locked by other processes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="version-divider">
 
             <!-- Version 1.1.0 -->
             <div class="version-block">
                 <div class="version-header">
-                    <h2 class="version-number">1.1.0</h2>
+                    <span class="platform-tag platform-tag-mac">Mac</span>
+                    <h3 class="version-number">1.1.0</h3>
                     <span class="version-date">February 5, 2026</span>
                 </div>
 
@@ -370,6 +544,13 @@
                         <li>Improved UI performance for tab and table switching</li>
                     </ul>
                 </div>
+
+                <div class="changelog-category category-removed">
+                    <span class="category-label">Removed</span>
+                    <ul>
+                        <li>Package.swift (Swift Package Manager) &mdash; project uses Xcode project exclusively</li>
+                    </ul>
+                </div>
             </div>
 
             <hr class="version-divider">
@@ -377,7 +558,8 @@
             <!-- Version 1.0.0 -->
             <div class="version-block">
                 <div class="version-header">
-                    <h2 class="version-number">1.0.0</h2>
+                    <span class="platform-tag platform-tag-mac">Mac</span>
+                    <h3 class="version-number">1.0.0</h3>
                     <span class="version-date">January 14, 2026</span>
                 </div>
 
@@ -400,6 +582,8 @@
                         <li>Column sorting (preserves pending edits)</li>
                         <li>Pagination for large tables</li>
                         <li>Schema inspector showing columns, indexes, triggers, and CREATE statements</li>
+                        <li>App Sandbox enabled for App Store distribution</li>
+                        <li>Unsaved changes warning on quit</li>
                     </ul>
                 </div>
 
@@ -409,10 +593,64 @@
                         <li>Fully sandboxed macOS app</li>
                         <li>Read-only mode by default (edit mode must be explicitly enabled)</li>
                         <li>Confirmation dialogs for destructive operations</li>
-                        <li>No cloud uploads - all data stays local</li>
+                        <li>No cloud uploads &mdash; all data stays local</li>
                     </ul>
                 </div>
             </div>
+
+            </section>
+
+            <section class="platform-section platform-ipad">
+                <header class="platform-section-header">
+                    <div class="platform-section-eyebrow">Platform</div>
+                    <h2>iPad</h2>
+                    <p>Native iPadOS app &middot; Separate App Store release with its own version history</p>
+                </header>
+
+            <!-- iPad 1.0 -->
+            <div class="version-block">
+                <div class="version-header">
+                    <span class="platform-tag platform-tag-ipad">iPad</span>
+                    <h3 class="version-number">1.0</h3>
+                    <span class="version-date">May 5, 2026</span>
+                </div>
+
+                <p style="color: var(--gray); margin-bottom: 24px;">First iPad release. Native iPadOS app sharing the SQLiteBrowserCore engine with the Mac app, with iPad-specific UI and integrations.</p>
+
+                <div class="changelog-category category-added">
+                    <span class="category-label">Added</span>
+                    <ul>
+                        <li>Native iPad app with NavigationSplitView sidebar/detail layout</li>
+                        <li>Document browser integration (Files app, AirDrop, Quick Look)</li>
+                        <li>Open SQLite databases from any document picker source</li>
+                        <li>Tabular import: CSV, TSV, JSON, JSONL, NDJSON, Excel (.xlsx/.xlsm)</li>
+                        <li>Multi-scene support (Stage Manager, Split View)</li>
+                        <li>Hardware keyboard shortcuts: Cmd+E (edit mode), Cmd+F (find), Cmd+S (save), Cmd+N (insert row), Cmd+D (duplicate row), Cmd+Z/Shift+Cmd+Z (undo/redo), Cmd+I (toggle detail panel), Cmd+/Cmd- (zoom)</li>
+                        <li>Cell editor sheet with full-content editing for long values</li>
+                        <li>Detail panel for viewing and editing full cell content</li>
+                        <li>Pending changes review tab before commit</li>
+                        <li>SQL query editor with syntax highlighting</li>
+                        <li>Global search across all tables with per-result tabs</li>
+                        <li>Schema inspector: columns, indexes, triggers, CREATE statements, views</li>
+                        <li>Database statistics: table/view/index/trigger counts, file size, SQLite config</li>
+                        <li>Edit mode toggle with visual change tracking and confirmation dialogs</li>
+                        <li>Row insert, delete, duplicate, with undo/redo</li>
+                        <li>Recents list with security-scoped bookmark persistence</li>
+                        <li>Drag-and-drop file open</li>
+                        <li>Bundled sample database for first-launch demo</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-category category-security">
+                    <span class="category-label">Security</span>
+                    <ul>
+                        <li>Read-only mode by default; edit mode requires explicit enable</li>
+                        <li>No data collection, no analytics, no tracking (declared in PrivacyInfo.xcprivacy)</li>
+                        <li>All file access via system document picker (security-scoped URLs)</li>
+                    </ul>
+                </div>
+            </div>
+            </section>
         </div>
 
         <!-- Footer -->
