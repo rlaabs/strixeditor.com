@@ -223,6 +223,33 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .cta-mac-col,
+        .cta-ipad-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .cta-soon {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 0, 110, 0.08);
+            border: 1px solid rgba(255, 0, 110, 0.25);
+            color: var(--gray);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: default;
+        }
+        .cta-soon strong {
+            font-weight: 700;
+            color: var(--white);
         }
 
         .btn {
@@ -281,50 +308,129 @@
             transform: translateY(-3px);
         }
 
-        /* Hero Visual - Compact Vertical Layout */
+        /* iPad CTA: same primary button, pink/orange gradient for platform contrast */
+        .btn-ipad {
+            background: linear-gradient(135deg, var(--hot-pink), var(--vibrant-orange));
+            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
+        }
+        .btn-ipad:hover {
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.6);
+        }
+        .btn-platform {
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 1.1em;
+            line-height: 1;
+        }
+
+        .link-direct {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 102, 255, 0.08);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            color: var(--gray);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: color 0.3s, background 0.3s, border-color 0.3s;
+        }
+        .link-direct:hover {
+            color: var(--white);
+            background: rgba(0, 102, 255, 0.16);
+            border-color: rgba(0, 102, 255, 0.45);
+        }
+        .link-direct strong {
+            font-weight: 700;
+            color: var(--white);
+            margin-left: 4px;
+        }
+
+        /* Hero Visual — video stage + platform picker */
         .hero-visual {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
             align-items: stretch;
         }
 
-        .floating-card {
+        .hero-stage {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 102, 255, 0.35);
+            box-shadow: 0 30px 80px rgba(0, 102, 255, 0.25);
+            transition: box-shadow 0.5s, border-color 0.5s;
+        }
+        .hero-stage.is-ipad {
+            box-shadow: 0 30px 80px rgba(255, 0, 110, 0.25);
+            border-color: rgba(255, 0, 110, 0.35);
+        }
+        .hero-stage .chrome {
+            display: flex; gap: 8px;
+            padding: 10px 14px;
+            background: linear-gradient(180deg, #3a3a3f, #2d2d32);
+        }
+        .hero-stage .chrome .tl { width: 11px; height: 11px; border-radius: 50%; }
+        .hero-stage .chrome .r { background: #ff5f56; }
+        .hero-stage .chrome .y { background: #ffbd2e; }
+        .hero-stage .chrome .g { background: #27ca40; }
+        .hero-stage .frame { display: none; position: relative; }
+        .hero-stage .frame.active { display: block; }
+        .hero-stage video {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #000;
+        }
+
+        /* Platform picker — sliding pill, sized to content (not stretched) */
+        .hero-stage-picker {
+            display: inline-flex;
+            align-self: center;
+            padding: 4px;
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 20px 25px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            border-radius: 999px;
+            position: relative;
         }
-
-        .floating-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.4);
-        }
-
-        .card-icon {
-            font-size: 32px;
-            flex-shrink: 0;
-        }
-
-        .card-content {
-            flex: 1;
-        }
-
-        .card-title {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .card-text {
-            font-size: 13px;
+        .hero-stage-picker button {
+            position: relative;
+            z-index: 2;
+            padding: 10px 22px;
+            background: none;
+            border: none;
+            border-radius: 999px;
             color: var(--gray);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-stage-picker button.active { color: #fff; }
+        .hero-stage-picker .pill {
+            position: absolute;
+            top: 4px; left: 4px;
+            height: calc(100% - 8px);
+            width: calc(50% - 4px);
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink));
+            border-radius: 999px;
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.4s;
+            box-shadow: 0 8px 24px rgba(0, 102, 255, 0.4);
+            z-index: 1;
+        }
+        .hero-stage-picker[data-active="ipad"] .pill {
+            transform: translateX(100%);
+            box-shadow: 0 8px 24px rgba(255, 0, 110, 0.4);
         }
 
         /* Features Section */
@@ -343,16 +449,16 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
         }
 
         .feature-box {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 50px;
+            border-radius: 28px;
+            padding: 36px 32px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
@@ -382,16 +488,16 @@
 
         .feature-number {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 16px;
+            right: 22px;
             font-family: 'Archivo Black', sans-serif;
-            font-size: 120px;
+            font-size: 100px;
             opacity: 0.05;
         }
 
         .feature-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 52px;
+            margin-bottom: 18px;
             display: block;
         }
 
@@ -404,23 +510,119 @@
         .feature-box:nth-child(3) { border-left: 4px solid var(--vibrant-orange); }
         .feature-box:nth-child(3) .feature-icon { filter: drop-shadow(0 0 20px var(--vibrant-orange)); }
 
+        .feature-box:nth-child(4) { border-left: 4px solid var(--yellow); }
+        .feature-box:nth-child(4) .feature-icon { filter: drop-shadow(0 0 20px var(--yellow)); }
+
         .feature-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 12px;
             letter-spacing: -1px;
+            line-height: 1.15;
         }
 
         .feature-description {
             color: var(--gray);
-            font-size: 16px;
-            line-height: 1.8;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Features grid tablet: 2x2 */
+        @media (max-width: 1100px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+            .feature-box { padding: 44px 36px; }
+            .feature-icon { font-size: 60px; }
+            .feature-title { font-size: 26px; }
+            .feature-description { font-size: 15px; }
+        }
+        /* Features grid mobile: 1 column */
+        @media (max-width: 600px) {
+            .features-grid { grid-template-columns: 1fr; }
         }
 
         /* Screenshot Showcase */
         .showcase {
             padding: 120px 0;
             position: relative;
+        }
+
+        /* Platform toggle — sliding pill, JS-driven .active state */
+        .platform-toggle {
+            position: relative;
+            display: inline-flex;
+            margin: -40px auto 40px;
+            padding: 6px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .toggle-btn {
+            position: relative;
+            z-index: 2;
+            padding: 12px 28px;
+            background: none;
+            border: none;
+            border-radius: 999px;
+            color: var(--gray);
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toggle-btn .toggle-icon { font-size: 16px; }
+        .toggle-btn.active { color: var(--white); }
+        .toggle-pill {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            height: calc(100% - 12px);
+            width: calc(50% - 6px);
+            background: linear-gradient(135deg, var(--electric-blue), var(--hot-pink));
+            border-radius: 999px;
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            box-shadow: 0 8px 24px rgba(0, 102, 255, 0.4);
+            z-index: 1;
+        }
+        .platform-toggle[data-active="ipad"] .toggle-pill {
+            transform: translateX(100%);
+            box-shadow: 0 8px 24px rgba(255, 0, 110, 0.4);
+        }
+
+        /* Show/hide platform grids — selector combines both classes to outrank
+           the .showcase-grid { display: grid } rule defined later in the file. */
+        .showcase-grid.platform-grid { display: none; }
+        .showcase-grid.platform-grid.active {
+            display: grid;
+            animation: fadeUp 0.4s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* iPad cards — already-framed images, drop the window chrome treatment */
+        .screenshot-card.ipad-card {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.06), rgba(0, 102, 255, 0.06));
+            padding: 16px;
+        }
+        .screenshot-card.ipad-card img {
+            border-radius: 12px;
+        }
+        .screenshot-card.ipad-card:hover {
+            border-color: var(--hot-pink);
+            box-shadow:
+                0 32px 64px -16px rgba(0, 0, 0, 0.7),
+                0 0 80px rgba(255, 0, 110, 0.18);
         }
 
         .showcase-grid {
@@ -674,10 +876,6 @@
                 display: none;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
             .showcase-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -699,6 +897,10 @@
 
             .cta-buttons {
                 flex-direction: column;
+                align-items: stretch;
+            }
+            .cta-mac-col {
+                width: 100%;
             }
 
             .btn {
@@ -739,39 +941,46 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>
-                        macOS Native<br/>
+                        <span class="slide-container slide-container-platform"><span class="slide-track"><span class="slide-word">macOS</span><span class="slide-word">iPadOS</span></span></span> Native<br/>
                         <span class="gradient-text">SQLite <span class="slide-container"><span class="slide-track"><span class="slide-word">Browser</span><span class="slide-word">Editor</span></span></span></span><br/>
-                        
+
                     </h1>
                     <p class="hero-subtitle">
-                        Fast. Simple. Powerful. Built with Swift and SwiftUI for macOS 14+.
+                        Fast. Simple. Powerful. Built with Swift and SwiftUI for Mac and iPad.
                     </p>
                     <div class="cta-buttons">
-                        <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" class="btn btn-primary">Download for macOS</a>
+                        <div class="cta-mac-col">
+                            <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" class="btn btn-primary">
+                                <span class="btn-platform">🖥</span> Download for Mac
+                            </a>
+                            <button onclick="buyDirect()" class="link-direct">
+                                Or buy direct for Mac — <strong>$9.99</strong>
+                            </button>
+                        </div>
+                        <div class="cta-ipad-col">
+                            <!-- TODO: replace href with actual iPad App Store URL when published -->
+                            <a href="#" class="btn btn-primary btn-ipad">
+                                <span class="btn-platform">📱</span> Download for iPad
+                            </a>
+                            <span class="cta-soon"><strong>Coming Soon</strong></span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="hero-visual">
-                    <div class="floating-card">
-                        <span class="card-icon">⚡</span>
-                        <div class="card-content">
-                            <div class="card-title">Native Speed</div>
-                            <div class="card-text">Swift + SwiftUI</div>
+                    <div class="hero-stage" id="heroStage">
+                        <div class="chrome"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span></div>
+                        <div class="frame active" data-platform="mac">
+                            <video src="videos/promo-mac.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+                        </div>
+                        <div class="frame" data-platform="ipad">
+                            <video src="videos/promo-ipad.mp4" muted loop playsinline controls preload="metadata"></video>
                         </div>
                     </div>
-                    <div class="floating-card">
-                        <span class="card-icon">🛡️</span>
-                        <div class="card-content">
-                            <div class="card-title">Safe by Default</div>
-                            <div class="card-text">Read-only until you're ready</div>
-                        </div>
-                    </div>
-                    <div class="floating-card">
-                        <span class="card-icon">🔍</span>
-                        <div class="card-content">
-                            <div class="card-title">FTS Search</div>
-                            <div class="card-text">Instant Results</div>
-                        </div>
+                    <div class="hero-stage-picker" data-active="mac" role="tablist" aria-label="Hero video platform">
+                        <button class="active" data-platform="mac" role="tab" aria-selected="true">🖥 Mac</button>
+                        <button data-platform="ipad" role="tab" aria-selected="false">📱 iPad</button>
+                        <div class="pill"></div>
                     </div>
                 </div>
             </div>
@@ -805,7 +1014,16 @@
                     <span class="feature-icon">🔍</span>
                     <h3 class="feature-title">Advanced Search</h3>
                     <p class="feature-description">
-                        Full-text search with FTS support. Find anything instantly, even in large databases.
+                        Full-text search (FTS5) with result highlighting. Find anything instantly, even in large databases.
+                    </p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-number">04</div>
+                    <span class="feature-icon">📥</span>
+                    <h3 class="feature-title">Import Anything</h3>
+                    <p class="feature-description">
+                        Drop in CSV, TSV, JSON, or Excel files. Multi-sheet workbooks expand to one SQLite table per sheet — no scripts, no conversion tools.
                     </p>
                 </div>
             </div>
@@ -814,10 +1032,21 @@
 
         <!-- Screenshot Showcase -->
         <section class="showcase" id="showcase">
-            <h2 class="section-title">SEE IT IN ACTION</h2>
+            <h2 class="section-title">SCREENSHOTS</h2>
 
-            <div class="showcase-grid">
-                <!-- Change Tracking -->
+            <!-- Platform toggle -->
+            <div class="platform-toggle" role="tablist" aria-label="Platform">
+                <button class="toggle-btn active" data-platform="mac" role="tab" aria-selected="true">
+                    <span class="toggle-icon">🖥</span> Mac
+                </button>
+                <button class="toggle-btn" data-platform="ipad" role="tab" aria-selected="false">
+                    <span class="toggle-icon">📱</span> iPad
+                </button>
+                <div class="toggle-pill"></div>
+            </div>
+
+            <!-- Mac screenshots -->
+            <div class="showcase-grid platform-grid mac-grid active" data-platform="mac">
                 <div class="screenshot-card" onclick="openLightbox('12-change-tracking.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
@@ -834,7 +1063,6 @@
                     </div>
                 </div>
 
-                <!-- Search -->
                 <div class="screenshot-card" onclick="openLightbox('05-search-bar.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
@@ -851,7 +1079,6 @@
                     </div>
                 </div>
 
-                <!-- Schema Inspector -->
                 <div class="screenshot-card" onclick="openLightbox('21-schema-full.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
@@ -868,7 +1095,6 @@
                     </div>
                 </div>
 
-                <!-- Query Tab -->
                 <div class="screenshot-card" onclick="openLightbox('14-query-tab.webp')">
                     <div class="window-chrome">
                         <div class="traffic-lights">
@@ -882,6 +1108,45 @@
                         <span class="screenshot-badge">Query</span>
                         <h3 class="screenshot-title">SQL Query Editor</h3>
                         <p class="screenshot-description">Write and execute custom SQL queries with a built-in editor and instant results.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- iPad screenshots — already framed images, no window chrome needed -->
+            <div class="showcase-grid platform-grid ipad-grid" data-platform="ipad">
+                <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-04-edit-mode.webp')">
+                    <img src="ipad-04-edit-mode.webp" alt="iPad Edit Mode" loading="lazy">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Edit Mode</span>
+                        <h3 class="screenshot-title">Touch to Edit</h3>
+                        <p class="screenshot-description">Tap a cell, type, save. Same change-tracking safety on tablet.</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-07-search-highlight.webp')">
+                    <img src="ipad-07-search-highlight.webp" alt="iPad Search" loading="lazy">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Search</span>
+                        <h3 class="screenshot-title">Instant Search</h3>
+                        <p class="screenshot-description">Same FTS engine. Real-time filtering and match highlighting, designed for thumbs.</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-09-statistics.webp')">
+                    <img src="ipad-09-statistics.webp" alt="iPad Column Statistics" loading="lazy">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Stats</span>
+                        <h3 class="screenshot-title">Column Statistics</h3>
+                        <p class="screenshot-description">Min/max/avg, null counts, distinct values — one tap.</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-06-query-tab.webp')">
+                    <img src="ipad-06-query-tab.webp" alt="iPad Query Tab" loading="lazy">
+                    <div class="screenshot-content">
+                        <span class="screenshot-badge">Query</span>
+                        <h3 class="screenshot-title">SQL Query Tab</h3>
+                        <p class="screenshot-description">Write SQL with the full keyboard. Tap to run, results below.</p>
                     </div>
                 </div>
             </div>
@@ -957,6 +1222,68 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
         });
+
+        // Platform toggle for screenshot showcase
+        const toggle = document.querySelector('.platform-toggle');
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const grids = document.querySelectorAll('.platform-grid');
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const platform = btn.dataset.platform;
+                toggle.setAttribute('data-active', platform);
+                toggleBtns.forEach(b => {
+                    const isActive = b.dataset.platform === platform;
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-selected', isActive);
+                });
+                grids.forEach(g => g.classList.toggle('active', g.dataset.platform === platform));
+            });
+        });
+
+        // Hero stage picker — swap Mac/iPad promo video
+        const heroPicker = document.querySelector('.hero-stage-picker');
+        if (heroPicker) {
+            const heroStage = document.getElementById('heroStage');
+            const pickerBtns = heroPicker.querySelectorAll('button');
+            const heroFrames = heroStage.querySelectorAll('.frame');
+            pickerBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const platform = btn.dataset.platform;
+                    heroPicker.setAttribute('data-active', platform);
+                    pickerBtns.forEach(b => {
+                        const isActive = b.dataset.platform === platform;
+                        b.classList.toggle('active', isActive);
+                        b.setAttribute('aria-selected', isActive);
+                    });
+                    heroFrames.forEach(f => {
+                        const isActive = f.dataset.platform === platform;
+                        f.classList.toggle('active', isActive);
+                        const v = f.querySelector('video');
+                        if (isActive) {
+                            v.currentTime = 0;
+                            v.play().catch(() => {});
+                        } else {
+                            v.pause();
+                        }
+                    });
+                    heroStage.classList.toggle('is-ipad', platform === 'ipad');
+                });
+            });
+        }
+    </script>
+
+    <!-- Paddle for direct purchase (Mac only) -->
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script>
+        if (window.Paddle) {
+            Paddle.Initialize({ token: 'live_cd01627abeb844422ba33dda2c4' });
+        }
+        function buyDirect() {
+            if (!window.Paddle) { alert('Payment system loading — try again in a moment.'); return; }
+            Paddle.Checkout.open({
+                items: [{ priceId: 'pri_01knz29fxp2fjd6bwzekzjvqsp', quantity: 1 }]
+            });
+        }
     </script>
 </body>
 </html>
