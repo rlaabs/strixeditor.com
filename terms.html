@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Strix SQLite</title>
-    <meta name="description" content="Terms of Service for Strix SQLite, a macOS native SQLite browser and editor.">
+    <title>Terms of Service — Strix SQLite</title>
+    <meta name="description" content="Terms of Service for Strix SQLite, a native SQLite browser and editor for macOS and iPadOS.">
     <link rel="canonical" href="https://strixeditor.com/terms.html">
     <link rel="icon" type="image/png" href="/strix_logo_48.png">
     <link rel="apple-touch-icon" href="/strix_logo_48.png">
-    <meta property="og:title" content="Terms of Service - Strix SQLite">
-    <meta property="og:description" content="Terms of Service for Strix SQLite, a macOS native SQLite browser and editor.">
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:title" content="Terms of Service — Strix SQLite">
+    <meta property="og:description" content="Terms of Service for Strix SQLite, a native SQLite browser and editor for macOS and iPadOS.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://strixeditor.com/terms.html">
-    <meta property="og:image" content="https://strixeditor.com/strix_logo.png">
+    <meta property="og:image" content="https://strixeditor.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Strix SQLite">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terms of Service — Strix SQLite">
+    <meta name="twitter:description" content="Terms of Service for Strix SQLite.">
+    <meta name="twitter:image" content="https://strixeditor.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -199,6 +207,18 @@
             color: var(--gray);
         }
 
+        .footer-text a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .footer-text a:hover {
+            color: var(--white);
+            border-bottom-color: var(--electric-blue);
+        }
+
         .footer-links {
             display: flex;
             gap: 30px;
@@ -323,7 +343,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-text">
-                    &copy; 2026 Robert Laabs. All rights reserved.
+                    &copy; 2026 <a href="https://rlaabs.com/" rel="author">Robert Laabs</a>. All rights reserved.
                 </div>
                 <div class="footer-links">
                     <a href="/pricing.html">Pricing</a>

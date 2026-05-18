@@ -3,28 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strix SQLite - macOS Native SQLite Browser</title>
-    <meta name="description" content="Fast. Simple. Powerful SQLite browser for macOS. Built with Swift and SwiftUI.">
+    <title>Strix SQLite — Native SQLite Browser & Editor for Mac and iPad</title>
+    <meta name="description" content="A fast, native SQLite browser and editor for macOS and iPadOS. Open and edit .sqlite/.db files, run SQL queries, full-text search, and inspect schema. Built with Swift and SwiftUI. One-time purchase.">
     <link rel="canonical" href="https://strixeditor.com/">
     <link rel="icon" type="image/png" href="/strix_logo_48.png">
     <link rel="apple-touch-icon" href="/strix_logo_48.png">
-    <meta property="og:title" content="Strix SQLite - macOS Native SQLite Browser">
-    <meta property="og:description" content="Fast. Simple. Powerful SQLite browser for macOS. Built with Swift and SwiftUI.">
+    <meta property="og:title" content="Strix SQLite — Native SQLite Browser & Editor for Mac and iPad">
+    <meta property="og:description" content="A fast, native SQLite browser and editor for macOS and iPadOS. Open and edit .sqlite/.db files, run SQL queries, full-text search, and inspect schema.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://strixeditor.com/">
-    <meta property="og:image" content="https://strixeditor.com/strix_logo.png">
+    <meta property="og:image" content="https://strixeditor.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Strix SQLite">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Strix SQLite — Native SQLite Browser & Editor for Mac and iPad">
+    <meta name="twitter:description" content="A fast, native SQLite browser and editor for macOS and iPadOS. Open and edit .sqlite/.db files, run SQL queries, and inspect schema.">
+    <meta name="twitter:image" content="https://strixeditor.com/og-image.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Strix SQLite",
-      "description": "Fast. Simple. Powerful SQLite browser and editor for macOS. Built with Swift and SwiftUI.",
+      "description": "Fast. Simple. Powerful SQLite browser and editor for macOS and iPadOS. Built with Swift and SwiftUI.",
       "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "macOS 14+",
+      "operatingSystem": "macOS 14+, iPadOS 17+",
       "url": "https://strixeditor.com",
       "downloadUrl": "https://apps.apple.com/app/strix-sqlite-editor/id6757673418",
-      "softwareVersion": "1.1.0",
-      "image": "https://strixeditor.com/strix_logo.png"
+      "softwareVersion": "1.2.0",
+      "image": "https://strixeditor.com/strix_logo.png",
+      "author": {
+        "@type": "Person",
+        "name": "Robert Laabs",
+        "url": "https://rlaabs.com/",
+        "sameAs": ["https://rlaabs.com/"]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "url": "https://strixeditor.com/pricing.html",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What file formats does Strix SQLite open?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Strix opens any SQLite database file — including .sqlite, .sqlite3, .db, and custom extensions. You can also import CSV, TSV, JSON, and Excel (.xlsx) files; multi-sheet workbooks expand into one SQLite table per sheet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Strix SQLite free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — Strix SQLite is a paid app with a one-time purchase of $9.99 for Mac. There are no subscriptions and no in-app purchases. The iPad version is launching soon."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Strix SQLite safe to use on production databases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Databases open in read-only mode by default, so you cannot accidentally modify data. Switching to edit mode highlights every change until you explicitly save or discard it. Strix does not transmit any data — all databases stay on your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Strix SQLite require macOS or iPadOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Strix is built natively with Swift and SwiftUI and runs on macOS 14 (Sonoma) or later, and iPadOS 17 or later. There is no Windows or Linux version."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it support full-text search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Strix uses SQLite's FTS5 engine for fast full-text search across large databases, with result highlighting and real-time filtering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I buy Strix outside the App Store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — Strix for Mac is available directly via Paddle for $9.99, with the same features as the App Store version. See the pricing page for details."
+          }
+        }
+      ]
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -166,6 +242,19 @@
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+
+        /* Visually hidden but readable by crawlers and screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* Slide Animation - Universal Cross-Browser */
@@ -527,6 +616,23 @@
             line-height: 1.7;
         }
 
+        .features-footnote {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        .features-footnote a {
+            color: var(--electric-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .features-footnote a:hover {
+            text-decoration: underline;
+        }
+
         /* Features grid tablet: 2x2 */
         @media (max-width: 1100px) {
             .features-grid {
@@ -834,6 +940,76 @@
             margin-bottom: 30px;
         }
 
+        /* FAQ */
+        .faq {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .faq-list {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .faq-item[open] {
+            border-color: rgba(0, 102, 255, 0.4);
+        }
+
+        .faq-item summary {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--electric-blue);
+            transition: transform 0.3s;
+            line-height: 1;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            color: var(--gray);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+
+        .faq-item p a {
+            color: var(--electric-blue);
+            text-decoration: none;
+        }
+
+        .faq-item p a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             padding: 60px 0;
@@ -849,6 +1025,18 @@
 
         .footer-text {
             color: var(--gray);
+        }
+
+        .footer-text a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .footer-text a:hover {
+            color: var(--white);
+            border-bottom-color: var(--electric-blue);
         }
 
         .footer-links {
@@ -922,7 +1110,7 @@
         <header>
             <div class="header-content">
                 <div class="logo">
-                    <img src="strix_logo_48.png" alt="Strix Logo" class="logo-img">
+                    <img src="strix_logo_48.png" alt="Strix SQLite logo" width="40" height="40" class="logo-img">
                     <span>STRIX</span>
                 </div>
                 <nav>
@@ -930,6 +1118,7 @@
                     <a href="#showcase">Screenshots</a>
                     <a href="pricing.html">Pricing</a>
                     <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener">Download</a>
+                    <a href="#faq">FAQ</a>
                     <a href="#support">Support</a>
                     <a href="changelog.html">Changelog</a>
                 </nav>
@@ -941,8 +1130,9 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>
-                        <span class="slide-container slide-container-platform"><span class="slide-track"><span class="slide-word">macOS</span><span class="slide-word">iPadOS</span></span></span> Native<br/>
-                        <span class="gradient-text">SQLite <span class="slide-container"><span class="slide-track"><span class="slide-word">Browser</span><span class="slide-word">Editor</span></span></span></span><br/>
+                        <span class="sr-only">Strix SQLite — a native SQLite browser and editor for macOS and iPadOS</span>
+                        <span aria-hidden="true"><span class="slide-container slide-container-platform"><span class="slide-track"><span class="slide-word">macOS</span><span class="slide-word">iPadOS</span></span></span> Native<br/>
+                        <span class="gradient-text">SQLite <span class="slide-container"><span class="slide-track"><span class="slide-word">Browser</span><span class="slide-word">Editor</span></span></span></span></span><br/>
 
                     </h1>
                     <p class="hero-subtitle">
@@ -971,10 +1161,10 @@
                     <div class="hero-stage" id="heroStage">
                         <div class="chrome"><span class="tl r"></span><span class="tl y"></span><span class="tl g"></span></div>
                         <div class="frame active" data-platform="mac">
-                            <video src="videos/promo-mac.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+                            <video src="videos/promo-mac.mp4" poster="videos/promo-mac-poster.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
                         </div>
                         <div class="frame" data-platform="ipad">
-                            <video src="videos/promo-ipad.mp4" muted loop playsinline controls preload="metadata"></video>
+                            <video src="videos/promo-ipad.mp4" poster="videos/promo-ipad-poster.jpg" muted loop playsinline controls preload="metadata"></video>
                         </div>
                     </div>
                     <div class="hero-stage-picker" data-active="mac" role="tablist" aria-label="Hero video platform">
@@ -1028,6 +1218,10 @@
                 </div>
             </div>
 
+            <p class="features-footnote">
+                See the full version history on the <a href="changelog.html">changelog page</a>, or jump to <a href="pricing.html">pricing</a>.
+            </p>
+
             </section>
 
         <!-- Screenshot Showcase -->
@@ -1055,7 +1249,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="12-change-tracking.webp" alt="Change Tracking" loading="lazy">
+                    <img src="12-change-tracking.webp" alt="Strix SQLite on macOS — change tracking with modified cells highlighted before save" width="3456" height="1980" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Edit Mode</span>
                         <h3 class="screenshot-title">Change Tracking</h3>
@@ -1071,7 +1265,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="05-search-bar.webp" alt="Search with Highlighting" loading="lazy">
+                    <img src="05-search-bar.webp" alt="Strix SQLite on macOS — instant full-text search with match highlighting" width="3456" height="1980" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Search</span>
                         <h3 class="screenshot-title">Instant Search</h3>
@@ -1087,7 +1281,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="21-schema-full.webp" alt="Schema Inspector" loading="lazy">
+                    <img src="21-schema-full.webp" alt="Strix SQLite schema inspector showing column types, constraints, and CREATE statements" width="3456" height="1980" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Schema</span>
                         <h3 class="screenshot-title">Schema Inspector</h3>
@@ -1103,7 +1297,7 @@
                             <div class="traffic-light green"></div>
                         </div>
                     </div>
-                    <img src="14-query-tab.webp" alt="Query Tab" loading="lazy">
+                    <img src="14-query-tab.webp" alt="Strix SQLite SQL query editor on macOS with syntax highlighting and result grid" width="3456" height="1980" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Query</span>
                         <h3 class="screenshot-title">SQL Query Editor</h3>
@@ -1115,7 +1309,7 @@
             <!-- iPad screenshots — already framed images, no window chrome needed -->
             <div class="showcase-grid platform-grid ipad-grid" data-platform="ipad">
                 <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-04-edit-mode.webp')">
-                    <img src="ipad-04-edit-mode.webp" alt="iPad Edit Mode" loading="lazy">
+                    <img src="ipad-04-edit-mode.webp" alt="Strix SQLite on iPad — tap a cell to edit with change tracking" width="2752" height="2064" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Edit Mode</span>
                         <h3 class="screenshot-title">Touch to Edit</h3>
@@ -1124,7 +1318,7 @@
                 </div>
 
                 <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-07-search-highlight.webp')">
-                    <img src="ipad-07-search-highlight.webp" alt="iPad Search" loading="lazy">
+                    <img src="ipad-07-search-highlight.webp" alt="Strix SQLite on iPad — full-text search with real-time match highlighting" width="2752" height="2064" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Search</span>
                         <h3 class="screenshot-title">Instant Search</h3>
@@ -1133,7 +1327,7 @@
                 </div>
 
                 <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-09-statistics.webp')">
-                    <img src="ipad-09-statistics.webp" alt="iPad Column Statistics" loading="lazy">
+                    <img src="ipad-09-statistics.webp" alt="Strix SQLite on iPad — column statistics with min, max, average, and null counts" width="2752" height="2064" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Stats</span>
                         <h3 class="screenshot-title">Column Statistics</h3>
@@ -1142,7 +1336,7 @@
                 </div>
 
                 <div class="screenshot-card ipad-card" onclick="openLightbox('ipad-06-query-tab.webp')">
-                    <img src="ipad-06-query-tab.webp" alt="iPad Query Tab" loading="lazy">
+                    <img src="ipad-06-query-tab.webp" alt="Strix SQLite on iPad — SQL query tab with results below" width="2752" height="2064" loading="lazy">
                     <div class="screenshot-content">
                         <span class="screenshot-badge">Query</span>
                         <h3 class="screenshot-title">SQL Query Tab</h3>
@@ -1159,6 +1353,37 @@
                 <img src="" alt="Screenshot" id="lightbox-img">
             </div>
         </div>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>What file formats does Strix SQLite open?</summary>
+                    <p>Strix opens any SQLite database file — including <code>.sqlite</code>, <code>.sqlite3</code>, <code>.db</code>, and custom extensions. You can also import CSV, TSV, JSON, and Excel (<code>.xlsx</code>) files; multi-sheet workbooks expand into one SQLite table per sheet.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Strix SQLite free?</summary>
+                    <p>No — Strix is a paid app with a one-time purchase of <strong>$9.99</strong> for Mac. There are no subscriptions and no in-app purchases. The iPad version is launching soon. See the <a href="pricing.html">pricing page</a> for details.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Strix SQLite safe to use on production databases?</summary>
+                    <p>Yes. Databases open in <strong>read-only mode</strong> by default, so you cannot accidentally modify data. Switching to edit mode highlights every change until you explicitly save or discard it. Strix does not transmit any data — all databases stay on your device.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does Strix SQLite require macOS or iPadOS?</summary>
+                    <p>Yes. Strix is built natively with Swift and SwiftUI and runs on <strong>macOS 14 (Sonoma) or later</strong>, and <strong>iPadOS 17 or later</strong>. There is no Windows or Linux version.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does it support full-text search?</summary>
+                    <p>Yes. Strix uses SQLite's <strong>FTS5</strong> engine for fast full-text search across large databases, with result highlighting and real-time filtering.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I buy Strix outside the App Store?</summary>
+                    <p>Yes — Strix for Mac is available <a href="pricing.html">directly via Paddle</a> for $9.99, with the same features as the App Store version.</p>
+                </details>
+            </div>
+        </section>
 
         <!-- Support Section -->
         <section class="support" id="support">
@@ -1189,7 +1414,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-text">
-                    © 2026 Robert Laabs. All rights reserved.
+                    © 2026 <a href="https://rlaabs.com/" rel="author">Robert Laabs</a>. All rights reserved.
                 </div>
                 <div class="footer-links">
                     <a href="pricing.html">Pricing</a>

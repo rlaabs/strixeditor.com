@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Changelog - Strix SQLite</title>
-    <meta name="description" content="Changelog for Strix SQLite. See what's new in each release.">
+    <title>Changelog — Strix SQLite for Mac and iPad</title>
+    <meta name="description" content="Release notes for Strix SQLite on macOS and iPadOS. See what's new in every version — features, fixes, and improvements.">
     <link rel="canonical" href="https://strixeditor.com/changelog.html">
     <link rel="icon" type="image/png" href="/strix_logo_48.png">
     <link rel="apple-touch-icon" href="/strix_logo_48.png">
-    <meta property="og:title" content="Changelog - Strix SQLite">
-    <meta property="og:description" content="Changelog for Strix SQLite. See what's new in each release.">
+    <meta property="og:title" content="Changelog — Strix SQLite for Mac and iPad">
+    <meta property="og:description" content="Release notes for Strix SQLite on macOS and iPadOS. See what's new in every version.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://strixeditor.com/changelog.html">
-    <meta property="og:image" content="https://strixeditor.com/strix_logo.png">
+    <meta property="og:image" content="https://strixeditor.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Strix SQLite">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Changelog — Strix SQLite">
+    <meta name="twitter:description" content="Release notes for Strix SQLite on macOS and iPadOS.">
+    <meta name="twitter:image" content="https://strixeditor.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -392,6 +399,18 @@
             color: var(--gray);
         }
 
+        .footer-text a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .footer-text a:hover {
+            color: var(--white);
+            border-bottom-color: var(--electric-blue);
+        }
+
         .footer-links {
             display: flex;
             gap: 30px;
@@ -439,6 +458,7 @@
                     <a href="/#showcase">Screenshots</a>
                     <a href="/pricing.html">Pricing</a>
                     <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener">Download</a>
+                    <a href="/#faq">FAQ</a>
                     <a href="/#support">Support</a>
                     <a href="/changelog.html">Changelog</a>
                 </nav>
@@ -448,7 +468,7 @@
         <!-- Changelog -->
         <div class="changelog-content">
             <h1>Changelog</h1>
-            <p class="changelog-intro">All notable changes to Strix SQLite are documented here. The Mac and iPad apps ship as separate App Store listings with independent version histories.</p>
+            <p class="changelog-intro">All notable changes to <a href="/">Strix SQLite</a> are documented here. The Mac and iPad apps ship as separate App Store listings with independent version histories. See the <a href="/pricing.html">pricing page</a> to purchase.</p>
 
             <section class="platform-section platform-mac">
                 <header class="platform-section-header">
@@ -657,7 +677,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-text">
-                    &copy; 2026 Robert Laabs. All rights reserved.
+                    &copy; 2026 <a href="https://rlaabs.com/" rel="author">Robert Laabs</a>. All rights reserved.
                 </div>
                 <div class="footer-links">
                     <a href="/pricing.html">Pricing</a>
