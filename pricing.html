@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing — Strix SQLite for Mac and iPad</title>
-    <meta name="description" content="Strix SQLite is a one-time purchase, no subscription. $9.99 for Mac on the App Store or direct via Paddle. iPad version launching soon.">
+    <meta name="description" content="Strix SQLite is a one-time purchase, no subscription. $9.99 for Mac on the App Store or direct via Paddle, and $9.99 for iPad on the App Store.">
     <link rel="canonical" href="https://strixeditor.com/pricing.html">
     <link rel="icon" type="image/png" href="/strix_logo_48.png">
     <link rel="apple-touch-icon" href="/strix_logo_48.png">
     <meta property="og:title" content="Pricing — Strix SQLite for Mac and iPad">
-    <meta property="og:description" content="One-time purchase, no subscription. $9.99 for Mac on the App Store or direct via Paddle. iPad version launching soon.">
+    <meta property="og:description" content="One-time purchase, no subscription. $9.99 for Mac on the App Store or direct via Paddle, and $9.99 for iPad on the App Store.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://strixeditor.com/pricing.html">
     <meta property="og:image" content="https://strixeditor.com/og-image.png">
@@ -167,6 +167,12 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        /* Group the Mac + iPad download links visually as one nav item */
+        nav .nav-platforms {
+            display: inline-flex;
+            gap: 16px;
         }
 
         /* Pricing Header */
@@ -526,7 +532,10 @@
                     <a href="/#features">Features</a>
                     <a href="/#showcase">Screenshots</a>
                     <a href="/pricing.html">Pricing</a>
-                    <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener">Download</a>
+                    <span class="nav-platforms">
+                        <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" aria-label="Download Strix for Mac on the App Store">🖥 Mac</a>
+                        <a href="https://apps.apple.com/app/strix-editor/id6766697412" target="_blank" rel="noopener" aria-label="Download Strix for iPad on the App Store">📱 iPad</a>
+                    </span>
                     <a href="/#faq">FAQ</a>
                     <a href="/#support">Support</a>
                     <a href="/changelog.html">Changelog</a>
@@ -589,11 +598,10 @@
                 </ul>
 
                 <div class="purchase-options">
-                    <a href="#" class="btn btn-primary--ipad">
+                    <a href="https://apps.apple.com/app/strix-editor/id6766697412" target="_blank" rel="noopener" class="btn btn-primary--ipad">
                         <span class="btn-label">iPad App Store</span>
                         Download for iPadOS
                     </a>
-                    <span class="cta-soon"><strong>Coming Soon</strong></span>
                 </div>
             </div>
         </div>

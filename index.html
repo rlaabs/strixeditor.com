@@ -24,13 +24,42 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Strix SQLite",
-      "description": "Fast. Simple. Powerful SQLite browser and editor for macOS and iPadOS. Built with Swift and SwiftUI.",
+      "@id": "https://strixeditor.com/#mac-app",
+      "name": "Strix SQLite for Mac",
+      "description": "Fast, native SQLite browser and editor for macOS. Built with Swift and SwiftUI.",
       "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "macOS 14+, iPadOS 17+",
+      "operatingSystem": "macOS 14+",
       "url": "https://strixeditor.com",
       "downloadUrl": "https://apps.apple.com/app/strix-sqlite-editor/id6757673418",
       "softwareVersion": "1.2.0",
+      "image": "https://strixeditor.com/strix_logo.png",
+      "author": {
+        "@type": "Person",
+        "name": "Robert Laabs",
+        "url": "https://rlaabs.com/",
+        "sameAs": ["https://rlaabs.com/"]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "url": "https://strixeditor.com/pricing.html",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": "https://strixeditor.com/#ipad-app",
+      "name": "Strix SQLite for iPad",
+      "description": "Native iPadOS SQLite browser and editor — built ground-up for touch, not a Mac port. Powered by Swift and SwiftUI.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "iPadOS 18+",
+      "url": "https://strixeditor.com",
+      "downloadUrl": "https://apps.apple.com/app/strix-editor/id6766697412",
+      "softwareVersion": "1.0",
       "image": "https://strixeditor.com/strix_logo.png",
       "author": {
         "@type": "Person",
@@ -65,7 +94,7 @@
           "name": "Is Strix SQLite free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No — Strix SQLite is a paid app with a one-time purchase of $9.99 for Mac. There are no subscriptions and no in-app purchases. The iPad version is launching soon."
+            "text": "No — Strix SQLite is a paid app with a one-time purchase of $9.99 for Mac and $9.99 for iPad. There are no subscriptions and no in-app purchases."
           }
         },
         {
@@ -81,7 +110,7 @@
           "name": "Does Strix SQLite require macOS or iPadOS?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Strix is built natively with Swift and SwiftUI and runs on macOS 14 (Sonoma) or later, and iPadOS 17 or later. There is no Windows or Linux version."
+            "text": "Yes. Strix is built natively with Swift and SwiftUI and runs on macOS 14 (Sonoma) or later, and iPadOS 18 or later. There is no Windows or Linux version."
           }
         },
         {
@@ -207,6 +236,12 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        /* Group the Mac + iPad download links visually as one nav item */
+        nav .nav-platforms {
+            display: inline-flex;
+            gap: 16px;
         }
 
         /* Hero Section */
@@ -1117,7 +1152,10 @@
                     <a href="#features">Features</a>
                     <a href="#showcase">Screenshots</a>
                     <a href="pricing.html">Pricing</a>
-                    <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener">Download</a>
+                    <span class="nav-platforms">
+                        <a href="https://apps.apple.com/app/strix-sqlite-editor/id6757673418" target="_blank" rel="noopener" aria-label="Download Strix for Mac on the App Store">🖥 Mac</a>
+                        <a href="https://apps.apple.com/app/strix-editor/id6766697412" target="_blank" rel="noopener" aria-label="Download Strix for iPad on the App Store">📱 iPad</a>
+                    </span>
                     <a href="#faq">FAQ</a>
                     <a href="#support">Support</a>
                     <a href="changelog.html">Changelog</a>
@@ -1148,11 +1186,9 @@
                             </button>
                         </div>
                         <div class="cta-ipad-col">
-                            <!-- TODO: replace href with actual iPad App Store URL when published -->
-                            <a href="#" class="btn btn-primary btn-ipad">
+                            <a href="https://apps.apple.com/app/strix-editor/id6766697412" target="_blank" rel="noopener" class="btn btn-primary btn-ipad">
                                 <span class="btn-platform">📱</span> Download for iPad
                             </a>
-                            <span class="cta-soon"><strong>Coming Soon</strong></span>
                         </div>
                     </div>
                 </div>
@@ -1364,7 +1400,7 @@
                 </details>
                 <details class="faq-item">
                     <summary>Is Strix SQLite free?</summary>
-                    <p>No — Strix is a paid app with a one-time purchase of <strong>$9.99</strong> for Mac. There are no subscriptions and no in-app purchases. The iPad version is launching soon. See the <a href="pricing.html">pricing page</a> for details.</p>
+                    <p>No — Strix is a paid app with a one-time purchase of <strong>$9.99</strong> for Mac and <strong>$9.99</strong> for iPad. There are no subscriptions and no in-app purchases. See the <a href="pricing.html">pricing page</a> for details.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Is Strix SQLite safe to use on production databases?</summary>
@@ -1372,7 +1408,7 @@
                 </details>
                 <details class="faq-item">
                     <summary>Does Strix SQLite require macOS or iPadOS?</summary>
-                    <p>Yes. Strix is built natively with Swift and SwiftUI and runs on <strong>macOS 14 (Sonoma) or later</strong>, and <strong>iPadOS 17 or later</strong>. There is no Windows or Linux version.</p>
+                    <p>Yes. Strix is built natively with Swift and SwiftUI and runs on <strong>macOS 14 (Sonoma) or later</strong>, and <strong>iPadOS 18 or later</strong>. There is no Windows or Linux version.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Does it support full-text search?</summary>
